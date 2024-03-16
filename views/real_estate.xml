@@ -1,0 +1,95 @@
+<odoo>
+    <data>
+        <record id="real_estate_action" model="ir.actions.act_window">
+            <field name="name">Real</field>
+            <field name="res_model">real_state.real</field>
+            <field name="domain">['|','|',('garage','=',True),('garden_orientation','=','west'),('garden','=',True)]</field>
+            <field name="context">{'default_garage': True, 'default_name': 'asd', 'search_default_have_garage': 1}</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+        <record id="real_estate_view" model="ir.ui.view">
+            <field name="name">Real</field>
+            <field name="model">real_state.real</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="garage"/>
+                    <field name="bedrooms"/>
+                    <field name="garage"/>
+                    <field name="garden"/>
+                    <field name="garden_orientation"/>
+                </tree>
+            </field>
+
+        </record>
+
+        <record id="real_estate_form" model="ir.ui.view">
+            <field name="name">Real</field>
+            <field name="model">real_state.real</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Real Estate Basic Info">
+                                <field name="name"/>
+                               <field name="bedrooms"/>
+                               <field name="garage"/>
+                                <field name="garden"/>
+                                <field name="garden_orientation"/>
+                                <field name="image_ids"/>
+                            </group>
+                            <group>
+                                <field name="area"/>
+                                <field name="garden_area"/>
+                                <field name="total_area"/>
+                                <field name="date_availability"/>
+                                <field name="remaining_days"/>
+                            </group>
+                                <notebook>
+                                    <page string="RealEstate Partner">
+                                        <field name="partener_id" />
+                                    </page>
+                                    <page string="RealEstate Tags">
+                                         <field name="tages_id" />
+                                    </page>
+                                     <page string="RealEstate offers Line">
+                                         <field name="offer_id" >
+                                              <tree>
+                                                <field name="partner_id"/>
+                                                <field name="desc"/>
+                                                <field name="price"/>
+                                                <field name="offer_date"/>
+                                            </tree>
+                                         </field>
+                                     </page>
+                                </notebook>
+                        </group>
+                    </sheet>
+                </form>
+
+            </field>
+
+        </record>
+
+        <record id="real_state_search" model="ir.ui.view">
+            <field name="name">Search</field>
+            <field name="model">real_state.real</field>
+            <field name="arch" type="xml">
+                 <search string="Search Real Estate">
+
+                     <field name="garden_orientation" />
+                     <filter string="Have garage" name="have_garage" domain="[('garage','=',True)]"/>
+                     <filter string="No Garage" name="no_garage" domain="[('garage','=',False)]"/>
+                     <group>
+                         <filter string="Orientation" name="groupby_garden_orientation" context="{'group_by':'garden_orientation'}"/>
+                     </group>
+                 </search>
+            </field>
+
+        </record>
+        <menuitem id="real_estate" name="Real Estate" action="real_estate_action"  sequence="0"/>
+        <menuitem id="real_estate_root" name="Real Estate" parent="real_estate"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<!-- File: your_module_name/views/templates.xml -->
+
+<odoo>
+    <template id="template_real_estate_records" name="Real Estate Records">
+        <t t-call="website.layout">
+            <t t-set="title">Real Estate Records</t>
+            <div class="container">
+                <h1>Real Estate Records</h1>
+                <ul>
+                    <t t-foreach="records" t-as="record">
+                        <li><t t-esc="record.name"/></li> <!-- Example: Assuming 'name' field exists in your model -->
+                        <li><t t-esc="record.bedrooms"/></li> <!-- Example: Assuming 'name' field exists in your model -->
+                        <li><t t-esc="record.garage"/></li> <!-- Example: Assuming 'name' field exists in your model -->
+                        <li><t t-esc="record.garden"/></li> <!-- Example: Assuming 'name' field exists in your model -->
+                    </t>
+                </ul>
+            </div>
+        </t>
+    </template>
+</odoo>
